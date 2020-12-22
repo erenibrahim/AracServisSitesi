@@ -31,7 +31,7 @@ namespace WebProjem
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddIdentity<IdentityUser,IdentityRole>()
-                .AddDefaultTokenProviders()
+                .AddDefaultTokenProviders().AddDefaultUI() //giriþ için doðru adrese yönlendirir
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddRazorPages().AddRazorRuntimeCompilation();
         }

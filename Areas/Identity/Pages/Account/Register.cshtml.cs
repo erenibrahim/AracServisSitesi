@@ -82,6 +82,8 @@ namespace WebProjem.Areas.Identity.Pages.Account
             [Required]
             public string PhoneNumber { get; set; }
 
+            public bool IsAdmin { get; set; } //admin kullanıcının admin tipinde hesap oluşturabilmesi için
+
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -117,7 +119,16 @@ namespace WebProjem.Areas.Identity.Pages.Account
                     {
                         await _roleManager.CreateAsync(new IdentityRole(SD.CustomerEndUser));
                     }
-                    await _userManager.AddToRoleAsync(user, SD.AdminEndUser); //admin kullanıcı oluşturur
+                    if (Input.IsAdmin)
+                    {
+                        await _userManager.AddToRoleAsync(user, SD.AdminEndUser); //admin kullanıcı oluşturur
+                    }
+                    else
+                    {
+                        await _userManager.AddToRoleAsync(user, SD.CustomerEndUser); //müşteri kullanıcısı oluşturur
+
+                    }
+                   // await _userManager.AddToRoleAsync(user, SD.AdminEndUser); //admin kullanıcı oluşturur
                    // await _userManager.AddToRoleAsync(user, SD.CustomerEndUser); //müşteri kullanıcısı oluşturur
                     _logger.LogInformation("User created a new account with password.");
 
