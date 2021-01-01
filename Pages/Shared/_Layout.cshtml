@@ -75,12 +75,21 @@
                         @if (User.IsInRole(SD.AdminEndUser)) // sadece admin kullanıcı servis tipleri ve kullanıcıları görebilir
                         {
 
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-page="/ServiceTypes/Index">Service Types</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-page="/Users/Index">Users</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-page="/ServiceTypes/Index">Service Types</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-page="/Users/Index">Users</a>
+                            </li>
+
+                        }
+                        @if (User.IsInRole(SD.CustomerEndUser)) // sadece admin kullanıcı servis tipleri ve kullanıcıları görebilir
+                        {
+
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-page="/Cars/Index">Servis</a>
+                            </li>
+                            
 
                         }
                     </ul>
